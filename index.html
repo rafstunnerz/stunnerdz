@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EXCLUSIVE</title>
+<link rel="icon" href="https://i.ibb.co/vCwwgQ2D/TRAP-removebg-preview.png">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#f5f2ff;--dim:rgba(245,242,255,.55);--gold:#d4af37;}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;}
+body{margin:0;min-height:100vh;overflow-x:hidden;color:var(--ink);background:#050505;font-family:Outfit,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.bgvideo{position:fixed;top:50%;left:50%;z-index:-3;min-width:100%;min-height:100%;transform:translate(-50%,-50%) scale(1.1);object-fit:cover;filter:brightness(.28) blur(1px);}
+.bgshade{position:fixed;inset:0;z-index:-2;background: radial-gradient(ellipse at center,rgba(0,0,0,.2) 0%, rgba(0,0,0,.7) 100%);}
+#gate{position:fixed;inset:0;z-index:99;display:grid;place-items:center;background:rgba(4,4,4,.85);backdrop-filter:blur(10px);transition:opacity.6s ease;}
+.gatebox{text-align:center;animation:fadeIn 1s ease;display:flex;flex-direction:column;align-items:center;gap:30px;}
+@keyframes fadeIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+.gatelogo{width:280px;height:280px;object-fit:contain;filter:drop-shadow(0 0 25px rgba(212,175,55,.5));animation:glow 2s ease-in-out infinite alternate;pointer-events:none;}
+@keyframes glow{from{filter:drop-shadow(0 0 20px rgba(212,175,55,.4))}to{filter:drop-shadow(0 0 40px rgba(212,175,55,.8))}}
+#gobtn{padding:18px 50px;color:#fff;border:2px solid #d4af37;border-radius:12px;background:rgba(212,175,55,.1);font-size:.9rem;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all.3s ease;}
+#gobtn:hover{background:#d4af37;color:#000;box-shadow:0 8px 30px rgba(212,175,55,.6);transform:translateY(-3px);}
+.wrap{width:100%;display:flex;flex-direction:column;align-items:center;opacity:0;transition:opacity.5s ease;padding:60px 20px;}
+.wrap.show{opacity:1}
+.tag{color:var(--dim);font-size:.68rem;letter-spacing:1.5px;text-align:center;margin-bottom:30px;}
+.rule{width:60px;height:2px;margin:0 0 40px;background:var(--gold);}
+.tier{display:flex;flex-direction:column;align-items:center;}
+.ttitle{color:#fff;font-size:.68rem;letter-spacing:5px;margin-bottom:20px;}
+.roster{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;}
+.person{width:154px;min-height:210px;padding:12px 10px 10px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.13);background:rgba(5,5,7,.72);backdrop-filter:blur(10px);box-shadow:0 12px 28px rgba(0,0,0,.5);transition:transform.35s ease,box-shadow.35s ease,border-color.35s ease;}
+.person:hover{border-color:rgba(212,175,55,.95);box-shadow: 0 18px 38px rgba(0,0,0,.65), 0 0 24px rgba(212,175,55,.3);transform:translateY(-5px);}
+.pface{width:94px;height:94px;margin:0 auto;overflow:hidden;border-radius:50%;}
+.pface img{display:block;width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.pplacard{width:100%;margin-top:8px;padding:8px;border:1px solid rgba(220,210,255,.14);border-radius:9px;background:rgba(255,255,255,.07);backdrop-filter:blur(12px);}
+.pname{font-size:.76rem;font-weight:700;text-align:center}
+.phandle{font-size:.57rem;color:var(--dim);text-align:center}
+.pstatus{color:var(--gold);font-size:.55rem;margin-top:4px;text-align:center}
+.player{width:min(600px,calc(100% - 40px));margin:40px auto 0;padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,.13);background:rgba(5,5,7,.72);backdrop-filter:blur(10px);box-shadow:0 12px 28px rgba(0,0,0,.5);display:flex;gap:20px;align-items:center;}
+.player-cover{width:80px;height:80px;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.1);}
+.player-cover img{width:100%;height:100%;object-fit:cover;}
+.player-info{flex:1;}
+.player-title{font-size:1.1rem;font-weight:700;letter-spacing:2px;margin-bottom:4px;}
+.player-artist{font-size:.75rem;color:var(--dim);letter-spacing:3px;margin-bottom:12px;}
+.player-controls{display:flex;gap:12px;align-items:center;}
+.player-btn{background:transparent;border:1px solid rgba(255,255,255,.2);color:var(--ink);width:36px;height:36px;border-radius:6px;cursor:pointer;font-size:1rem;}
+.player-btn:hover{background:rgba(212,175,55,.2);border-color:var(--gold);}
+.player-progress{flex:1;height:4px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden;margin:0 10px;}
+.player-bar{height:100%;width:0%;background:var(--gold);transition:width.1s linear;}
+@media(max-width:768px){.gatelogo{width:200px;height:200px;}}
+</style>
+</head>
+<body>
+
+<video class="bgvideo" autoplay loop muted playsinline>
+<source src="https://i.imgur.com/vFys77C.mp4" type="video/mp4">
+</video>
+<div class="bgshade"></div>
+
+<div id="gate">
+    <div class="gatebox">
+        <img src="https://i.imgur.com/ttr8wP0.png" class="gatelogo" alt="EXCLUSIVE">
+        <button id="gobtn">Sa ngalan ng Exclusive. Amen.</button>
+    </div>
+</div>
+
+<main class="wrap">
+<p class="tag">“exclusive owns u.”</p>
+<div class="rule"></div>
+
+<section class="tier">
+    <div class="ttitle">EXCLUSIVE | REVSHIT | AMARI</div>
+    <div class="roster">
+        <!-- IKAW LANG DITO BOBI -->
+        <article class="person">
+            <div class="pface"><img src="https://i.imgur.com/NTcYvTj.jpeg"></div>
+            <div class="pplacard">
+                <div class="pname">/$</div>
+                <div class="phandle">@htrb1734</div>
+                <div class="pstatus">Online</div>
+            </div>
+        </article>
+    </div>
+</section>
+
+<div class="player">
+    <div class="player-cover">
+        <img src="https://i.imgur.com/yUP4suK.jpeg" alt="cover">
+    </div>
+    <div class="player-info">
+        <div class="player-title">MEDICAL</div>
+        <div class="player-artist">HEV ABI</div>
+        <div class="player-controls">
+            <button class="player-btn" id="playBtn">▶</button>
+            <div class="player-progress"><div class="player-bar" id="progressBar"></div></div>
+        </div>
+    </div>
+</div>
+</main>
+
+<script>
+document.getElementById("gobtn").addEventListener("click",function(){
+document.getElementById("gate").style.opacity="0";
+document.querySelector(".wrap").classList.add("show");
+setTimeout(function(){document.getElementById("gate").remove()},600);
+});
+
+var audio = new Audio();
+audio.src = "./Hev Abi - MEDICAL (Audio) [Sm4KLgn4110].mp3";
+audio.volume = 0.6;
+audio.loop = true;
+var isPlaying = false;
+var playBtn = document.getElementById("playBtn");
+var progressBar = document.getElementById("progressBar");
+
+playBtn.addEventListener("click",function(){
+if(isPlaying){ audio.pause(); playBtn.innerHTML = "▶"; isPlaying = false;}
+else{ audio.play(); playBtn.innerHTML = "⏸"; isPlaying = true;}
+});
+
+audio.addEventListener("timeupdate",function(){
+if(audio.duration){ var progress = (audio.currentTime / audio.duration) * 100; progressBar.style.width = progress + "%"; }
+});
+</script>
+</body>
+</html>
